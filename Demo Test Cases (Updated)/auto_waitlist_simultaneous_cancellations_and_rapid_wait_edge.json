@@ -1,0 +1,40 @@
+{
+  "title": "Waitlist: Simultaneous cancellations and rapid waitlist processing",
+  "type": "functional",
+  "priority": "P1 - Critical",
+  "preconditions": "The `enable_shift_waitlist` remote config is enabled. A shift is marked as 'Full'. There are at least 3 Pros (Pro A, Pro B, Pro C) available and eligible to join the waitlist for this shift. The shift has exactly one spot open, and the system is configured to allow one booking at a time.",
+  "steps": [
+    {
+      "step_text": "Pro A joins the waitlist for the 'Full' shift.",
+      "step_expected": "Pro A sees the confirmation toast: 'You\u2019ve been added to the waitlist. We\u2019ll notify you if a spot opens.' Pro A is added to the waitlist in FIFO order. The `waitlist_join` analytics event is fired with correct `shift_id` and `user_id` for Pro A."
+    },
+    {
+      "step_text": "Pro B joins the waitlist for the same 'Full' shift.",
+      "step_expected": "Pro B sees the confirmation toast: 'You\u2019ve been added to the waitlist. We\u2019ll notify you if a spot opens.' Pro B is added to the waitlist after Pro A (FIFO order). The `waitlist_join` analytics event is fired with correct `shift_id` and `user_id` for Pro B."
+    },
+    {
+      "step_text": "Pro C joins the waitlist for the same 'Full' shift.",
+      "step_expected": "Pro C sees the confirmation toast: 'You\u2019ve been added to the waitlist. We\u2019ll notify you if a spot opens.' Pro C is added to the waitlist after Pro B (FIFO order). The `waitlist_join` analytics event is fired with correct `shift_id` and `user_id` for Pro C."
+    },
+    {
+      "step_text": "Simultaneously, two different Pros (Pro X and Pro Y), who were previously booked for this shift, cancel their bookings. This action frees up two spots on the shift.",
+      "step_expected": "The system processes both cancellations. As the shift now has 2 open spots and the waitlist has 3 Pros, the system should correctly identify the first two Pros on the waitlist (Pro A and Pro B) to be automatically booked. Pro C remains on the waitlist. The system should handle this race condition without errors, ensuring the correct FIFO order is maintained."
+    },
+    {
+      "step_text": "Verify the booking status for Pro A and Pro B.",
+      "step_expected": "Pro A is successfully booked for the shift. Pro B is successfully booked for the shift. Pro C remains on the waitlist. The shift is no longer marked as 'Full' and now shows 0 available spots."
+    },
+    {
+      "step_text": "Verify push notifications received by Pro A and Pro B.",
+      "step_expected": "Pro A receives a push notification indicating they have been booked for the shift. Pro B receives a push notification indicating they have been booked for the shift."
+    },
+    {
+      "step_text": "Verify the waitlist status for Pro C.",
+      "step_expected": "Pro C is still on the waitlist for the shift. The Gig Details screen for Pro C shows them in the correct position on the waitlist."
+    },
+    {
+      "step_text": "Pro C navigates to the Gig Details screen for the shift and attempts to remove themselves from the waitlist.",
+      "step_expected": "Pro C successfully removes themselves from the waitlist. The waitlist no longer includes Pro C."
+    }
+  ]
+}

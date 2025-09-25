@@ -1,0 +1,117 @@
+You are an expert QA engineer. Analyze this bug fix and determine if the existing test case needs updates to cover the bug fix. Only make changes if absolutely necessary.
+
+**Quality Standards:**
+- Accuracy: 100% - Every change must be directly justified by the bug fix
+- Completeness: 100% - All required fields must be present and valid
+- Clarity: 100% - Changes must be clear and actionable
+- Consistency: 100% - Maintain the same structure and style as original
+
+**Bug Fix Details:**
+Title: {{ title }}
+Description: {{ description }}
+Acceptance Criteria: {{ acceptance_criteria }}
+Type: {{ change_type }}
+
+**Context:**
+{{ iw_context }}
+
+**Existing Test Case to Analyze (Do NOT rewrite unchanged fields):**
+```json
+{{ original_test_case }}
+```
+
+**Task:** First determine if this test case needs updates, then provide only essential changes.
+
+**Decision Framework - Ask yourself:**
+1. **Does this test case actually test functionality related to the bug fix?**
+2. **Would the existing test case catch this bug if it occurred again?**
+3. **Is the bug fix within the scope of this test case's objective?**
+4. **Can we add minimal additional steps to this flow to test the bug?**
+
+**Only proceed with updates if ALL of these are true:**
+- The test case tests functionality directly affected by the bug
+- The existing test case would NOT catch the bug fix scenario
+- The bug fix is within the scope of this test case's objective
+- Adding minimal steps would improve test coverage without changing the core objective
+
+**Update Options (choose the most appropriate):**
+- **Option A**: Add 1-2 minimal steps to existing flow (preferred)
+- **Option B**: Modify existing steps only if absolutely necessary
+- **Option C**: No updates needed - return original test case unchanged
+
+**If no updates needed, return the original test case unchanged.**
+
+**Hard Constraints (must follow):**
+- Preserve the test case's main objective and meaning. You may refine the `title` for clarity, but do not change the scenario's intent or scope. If you change the title, justify it explicitly and ensure steps still validate the same objective.
+- Preserve all fields that are not directly impacted by the bug fix. Do not rename, remove, or add unrelated fields.
+- **CRITICAL: Maintain numerical consistency.** If you change time-related numbers (hours, days, etc.), ensure the change is logical and consistent. For example: if changing "25 hours" to "12 hours", make sure this aligns with the bug fix requirements and doesn't introduce arbitrary changes.
+- **CRITICAL: Preserve original numerical values unless the bug fix specifically requires changing them.** Do not randomly modify numbers, percentages, or quantities unless directly related to the bug fix.
+- Prefer editing specific `steps[i].step_text` and `steps[i].step_expected` over replacing the entire steps array.
+- Only add new steps if strictly required to validate the fix; append them at the end and keep original step order.
+- Keep the structure identical to the original, only adjust the minimal set of fields needed.
+- Do NOT introduce new top-level fields beyond the schema.
+
+**JSON Schema for Updated Test Case (must conform):**
+{{ schema }}
+
+**IMPORTANT: The `type` field MUST be one of these exact values:**
+- "functional" (for feature testing)
+- "integration" (for system integration)
+- "ui" (for user interface)
+- "api" (for API testing)
+- "performance" (for performance testing)
+- "security" (for security testing)
+- "regression" (for regression testing)
+
+**Do NOT use:** bug_fix, test, manual, automated, e2e, smoke, sanity, or any other values.
+
+Return ONLY a valid JSON object with this exact structure (no prose before/after):
+{
+  "updated_test_case": {
+    // Full updated test case following the schema above
+    // Include ALL original fields, only minimally change what is necessary
+  },
+  "analysis_summary": {
+    "method": "LLM-controlled bug fix analysis",
+    "relevance_assessment": "Analysis of whether this test case is relevant to the bug fix",
+    "update_decision": "Explanation of why updates were or were not needed",
+    "update_option_chosen": "Option A (add steps), Option B (modify steps), or Option C (no updates)",
+    "bug_impact": "Detailed assessment of how the bug fix impacts this test case (if relevant)",
+    "changes": [
+      {
+        "field": "field_name",
+        "before": "old_value",
+        "after": "new_value",
+        "justification": "Why this specific change was necessary"
+      }
+    ],
+    "regression_tests": [
+      "Additional test case 1 to prevent regression",
+      "Additional test case 2 to prevent regression"
+    ],
+    "reasoning": "Detailed explanation of the decision-making process and changes made",
+    "assumptions": [
+      "Assumption 1: Description of assumption made during analysis",
+      "Assumption 2: Another assumption that influenced the changes"
+    ]
+  }
+}
+
+**Self-Review Checklist (apply before finalizing):**
+- [ ] Have you assessed whether this test case is actually relevant to the bug fix?
+- [ ] Have you considered if minimal additional steps can test the bug?
+- [ ] If making changes, can you justify that they are absolutely necessary?
+- [ ] Have you chosen the most appropriate update option (A, B, or C)?
+- [ ] Does every change directly address the bug fix? (If no, remove it)
+- [ ] Is the test case's main objective preserved? (If no, revise)
+- [ ] Are all numerical values consistent and logical?
+- [ ] Have you preserved all original numbers unless the bug fix specifically requires changing them?
+- [ ] Are all schema requirements met? (If no, fix)
+- [ ] Is the decision-making process clearly documented in the analysis?
+
+**Additional Guidance:**
+- Prefer updating exact fields like `steps[1].step_expected` with before/after in `changes`.
+- If you must change multiple parts of a step, list each changed field separately in `changes`.
+- If adjusting the title for clarity, keep the core objective unchanged and document the rationale in `reasoning`.
+
+Return ONLY the JSON object with no additional text or explanation.

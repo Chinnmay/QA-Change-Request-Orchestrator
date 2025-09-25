@@ -1,0 +1,24 @@
+{
+  "title": "Push-notification permission prompt on first app launch",
+  "type": "integration",
+  "priority": "P3 - Medium",
+  "preconditions": "Instawork Pro app freshly installed; notification permissions not yet granted or denied.",
+  "steps": [
+    {
+      "step_text": "Install or reinstall the Instawork Pro app to reset OS notification permissions, then launch the app.",
+      "step_expected": "The app opens to the welcome/sign-up screen and the OS push-notification permission modal appears requesting \"Instawork would like to send you notifications\"."
+    },
+    {
+      "step_text": "Tap \"Allow\" on the notification permission modal.",
+      "step_expected": "The modal is dismissed and the user remains on the app's current screen. A device push token is generated and sent to the backend (verify via network logs or debug endpoint)."
+    },
+    {
+      "step_text": "Kill and relaunch the app.",
+      "step_expected": "App launches without showing the OS notification permission modal again, indicating the permission state was saved."
+    },
+    {
+      "step_text": "Navigate to the in-app Settings › Notifications screen.",
+      "step_expected": "Notification preference toggles are enabled, reflecting that push notifications are allowed." 
+    }
+  ]
+}

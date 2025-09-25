@@ -1,0 +1,24 @@
+{
+  "title": "Verify Pro cancellation within 12 hours of shift start",
+  "type": "functional",
+  "priority": "P1 - Critical",
+  "preconditions": "Pro is logged in and has a booked shift. The current time is less than 12 hours before the shift start time.",
+  "steps": [
+    {
+      "step_text": "Navigate to the booked shifts section and select the shift to cancel.",
+      "step_expected": "The shift details are displayed."
+    },
+    {
+      "step_text": "Initiate the cancellation process for the selected shift.",
+      "step_expected": "A confirmation modal appears, indicating the penalty and providing a link to the updated policy."
+    },
+    {
+      "step_text": "Observe the text within the cancellation confirmation modal.",
+      "step_expected": "The modal text clearly states: \"You can cancel up to 12 hours before start without penalty.\" and mentions the reliability score reduction for cancellations less than 12 hours before the shift."
+    },
+    {
+      "step_text": "Verify that the help center link in the modal navigates to the new policy document detailing the 12-hour cancellation window.",
+      "step_expected": "The help center link successfully redirects to the updated policy document."
+    }
+  ]
+}

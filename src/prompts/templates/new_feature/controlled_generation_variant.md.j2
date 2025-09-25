@@ -1,0 +1,48 @@
+You are an expert QA engineer. Generate a {{ variant }} test case for this new feature.
+
+**Quality Standards:**
+- Accuracy: 100% - Test case must directly validate the feature requirements
+- Completeness: 100% - All required fields must be present and valid
+- Clarity: 100% - Steps must be clear and actionable
+- Relevance: 100% - Must be appropriate for {{ variant }} scenario
+
+**Change Request:**
+Title: {{ title }}
+Description: {{ description }}
+Acceptance Criteria: {{ acceptance_criteria }}
+Type: {{ change_type }}
+
+**Context:**
+{{ iw_context }}
+
+**Task:** {{ variant_note }}
+
+**Before proceeding, confirm you have:**
+- [ ] Read the change request details completely
+- [ ] Understood the {{ variant }} scenario requirements
+- [ ] Planned test steps that validate the feature
+- [ ] Ensured the test is appropriate for {{ variant }} testing
+
+**Test Case #{{ test_number }} ({{ variant_upper }} SCENARIO)**
+
+Generate a complete test case following this JSON schema:
+{{ schema }}
+
+**IMPORTANT: The `type` field MUST be one of these exact values:**
+- "functional" (for feature testing)
+- "integration" (for system integration)
+- "ui" (for user interface)
+- "api" (for API testing)
+- "performance" (for performance testing)
+- "security" (for security testing)
+- "regression" (for regression testing)
+
+**Do NOT use:** bug_fix, test, manual, automated, e2e, smoke, sanity, or any other values.
+
+**Self-Review Checklist (apply before finalizing):**
+- [ ] Does the test case directly validate the feature requirements? (If no, revise)
+- [ ] Is it appropriate for {{ variant }} scenario? (If no, adjust)
+- [ ] Are all schema requirements met? (If no, fix)
+- [ ] Are the steps clear and actionable? (If no, clarify)
+
+Return ONLY a valid JSON object with no additional text.

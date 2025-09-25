@@ -1,0 +1,36 @@
+{
+  "title": "Verify Pro cancellation within the 12-hour free cancellation window",
+  "type": "functional",
+  "priority": "P1 - Critical",
+  "preconditions": "A Pro has a booked shift. The current time is less than 12 hours but more than 0 hours before the shift start time.",
+  "steps": [
+    {
+      "step_text": "Navigate to the booked shifts section.",
+      "step_expected": "The list of booked shifts is displayed."
+    },
+    {
+      "step_text": "Select the booked shift that is within the 12-hour cancellation window.",
+      "step_expected": "The details of the selected shift are displayed."
+    },
+    {
+      "step_text": "Tap the 'Cancel Shift' button.",
+      "step_expected": "A confirmation modal is displayed."
+    },
+    {
+      "step_text": "Verify the text on the confirmation modal.",
+      "step_expected": "The modal displays: 'You can cancel up to 12 hours before start without penalty.'"
+    },
+    {
+      "step_text": "Confirm the cancellation by tapping 'Confirm' in the modal.",
+      "step_expected": "The shift is successfully cancelled and no reliability penalty is applied."
+    },
+    {
+      "step_text": "Verify the Pro's reliability score.",
+      "step_expected": "The Pro's reliability score remains unchanged."
+    },
+    {
+      "step_text": "Check the analytics event 'shift_cancelled'.",
+      "step_expected": "The event includes the field 'free_cancellation_window_hours' with a value of 12."
+    }
+  ]
+}

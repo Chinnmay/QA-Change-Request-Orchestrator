@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://instawork.com/schemas/test_case.schema.json",
+  "title": "Instawork Test Case Schema",
+  "description": "Schema for Instawork test cases used by the AI Test Case Copilot",
+  "type": "object",
+  "required": [
+    "title", 
+    "type",
+    "priority",
+    "steps"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Descriptive title of the test case",
+      "minLength": 5,
+      "maxLength": 300
+    },
+    "type": {
+      "type": "string",
+      "description": "Category of test case",
+      "enum": [
+        "functional",
+        "integration", 
+        "ui",
+        "api",
+        "performance",
+        "security",
+        "regression"
+      ]
+    },
+    "priority": {
+      "type": "string",
+      "description": "Test priority level",
+      "enum": [
+        "P1 - Critical",
+        "P2 - High", 
+        "P3 - Medium",
+        "P4 - Low"
+      ]
+    },
+    "preconditions": {
+      "type": "string",
+      "description": "Prerequisites or setup required before executing the test"
+    },
+    "steps": {
+      "type": "array",
+      "description": "Ordered list of test execution steps",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "step_text",
+          "step_expected"
+        ],
+        "properties": {
+          "step_text": {
+            "type": "string",
+            "description": "Action to perform in this step",
+            "minLength": 5
+          },
+          "step_expected": {
+            "type": "string",
+            "description": "Expected outcome after performing the action",
+            "minLength": 3
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

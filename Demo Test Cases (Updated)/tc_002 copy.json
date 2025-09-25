@@ -1,0 +1,40 @@
+{
+  "title": "Pro books a shift that has prerequisites & verifies requirements",
+  "type": "functional",
+  "priority": "P1 - Critical",
+  "preconditions": "Pro account is active, has passed background check, and there is an open shift with prerequisite requirements available in the Open Shifts feed.",
+  "steps": [
+    {
+      "step_text": "From the Open Shifts feed, tap on a shift that displays prerequisite requirements badge.",
+      "step_expected": "Shift detail screen is displayed with a \"Book shift\" CTA."
+    },
+    {
+      "step_text": "Tap the \"Book shift\" button.",
+      "step_expected": "\"Accept these terms to book this shift\" screen appears (unless removed by experiment)."
+    },
+    {
+      "step_text": "Accept all general terms presented until the prerequisite terms card, then tap \"Review requirements\".",
+      "step_expected": "Prerequisite screen (e.g., Attire requirements) is displayed."
+    },
+    {
+      "step_text": "Tap \"I'm committed\" on the prerequisite screen.",
+      "step_expected": "User returns to the Accept Terms screen."
+    },
+    {
+      "step_text": "Under the \"I commit to upholding all other work requirements for this shift\" term, tap \"I accept\".",
+      "step_expected": "\"Awesome, your shift is booked\" confirmation screen appears with \"Verify shift requirements\" bottom sheet."
+    },
+    {
+      "step_text": "Tap \"Verify now\" on the bottom sheet.",
+      "step_expected": "App navigates through each prerequisite verification question screen."
+    },
+    {
+      "step_text": "Respond \"Yes\" to each prerequisite question until completion.",
+      "step_expected": "\"Yay! You meet all the requirements for this shift\" success screen appears with a \"Thanks\" button."
+    },
+    {
+      "step_text": "Tap \"Thanks\".",
+      "step_expected": "Gig detail screen opens with the shift status marked as Booked."
+    }
+  ]
+}

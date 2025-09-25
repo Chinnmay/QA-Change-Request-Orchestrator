@@ -1,0 +1,36 @@
+{
+  "title": "Pro joins waitlist for a full shift and is automatically booked when a spot opens",
+  "type": "functional",
+  "priority": "P1 - Critical",
+  "preconditions": "The remote-config key `enable_shift_waitlist` is enabled. A shift is posted and marked as 'Full' in the Open Shifts feed. There is at least one Pro already booked on the shift. The test Pro account is registered and active.",
+  "steps": [
+    {
+      "step_text": "As a Pro, navigate to the Open Shifts feed and locate a shift that is marked as 'Full'.",
+      "step_expected": "The shift displays a 'Join waitlist' button instead of 'Book shift'."
+    },
+    {
+      "step_text": "Tap the 'Join waitlist' button for the full shift.",
+      "step_expected": "A confirmation toast message appears stating: 'You\u2019ve been added to the waitlist. We\u2019ll notify you if a spot opens.'"
+    },
+    {
+      "step_text": "Verify that the 'Join waitlist' button is no longer visible for this shift, and the Pro's status for this shift is 'On waitlist' (or equivalent visual indicator).",
+      "step_expected": "The shift details screen or feed reflects that the Pro has joined the waitlist and the 'Join waitlist' button is replaced by an option to remove oneself from the waitlist."
+    },
+    {
+      "step_text": "As another Pro (or admin), cancel their booking for the shift.",
+      "step_expected": "The shift now has an open spot."
+    },
+    {
+      "step_text": "As the test Pro, check for a push notification and review the shift status in the Pro app.",
+      "step_expected": "The Pro receives a push notification indicating they have been booked for the shift. The shift status in the Pro app is updated to 'Booked' or equivalent, and the Pro is successfully added to the shift."
+    },
+    {
+      "step_text": "As the test Pro, navigate to the Gig Details screen for the newly booked shift.",
+      "step_expected": "The Pro can see the details of the booked shift and has the option to cancel their booking."
+    },
+    {
+      "step_text": "Observe analytics logs and confirm that the `waitlist_join` event was fired with the correct `shift_id` and `user_id` when the Pro joined the waitlist.",
+      "step_expected": "The `waitlist_join` analytics event is present in the logs with the accurate `shift_id` and `user_id` of the test Pro."
+    }
+  ]
+}

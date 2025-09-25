@@ -1,0 +1,32 @@
+{
+  "title": "Pro cancels a booked shift within the allowed cancellation window",
+  "type": "functional",
+  "priority": "P2 - High",
+  "preconditions": "Pro account is active with at least one future shift booked more than 24 hours before start time (cancellation allowed).",
+  "steps": [
+    {
+      "step_text": "Open the Instawork Pro app and navigate to the \"My Shifts\" tab (or Upcoming tab).",
+      "step_expected": "List of upcoming booked shifts is displayed."
+    },
+    {
+      "step_text": "Tap the booked shift that starts more than 24 hours from now.",
+      "step_expected": "Gig detail screen opens showing shift information and a \"Cancel shift\" button."
+    },
+    {
+      "step_text": "Tap the \"Cancel shift\" button.",
+      "step_expected": "Cancellation reason modal appears with \"Yes, cancel shift\" confirmation CTA."
+    },
+    {
+      "step_text": "Select a cancellation reason (e.g., \"Personal reasons\") and tap \"Yes, cancel shift\".",
+      "step_expected": "Confirmation toast \"Shift cancelled\" appears and user is redirected back to My Shifts list."
+    },
+    {
+      "step_text": "Verify the cancelled shift no longer appears under Upcoming shifts.",
+      "step_expected": "Shift is removed from Upcoming list and appears under Past/Cancelled section with status \"Cancelled\"."
+    },
+    {
+      "step_text": "Check account reliability metrics (optional analytics debug or UI).",
+      "step_expected": "Reliability metrics update appropriately; no reliability penalty is assessed because cancellation occurred within allowed window."
+    }
+  ]
+}

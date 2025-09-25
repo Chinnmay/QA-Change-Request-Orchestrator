@@ -1,0 +1,64 @@
+{
+  "title": "Pro completes onboarding without resume or position selection",
+  "type": "functional",
+  "priority": "P2 - High",
+  "preconditions": "Ensure 'new_onboarding_flow' feature is enabled and the app is freshly installed.",
+  "steps": [
+    {
+      "step_text": "Launch the Pro app and tap \"Create account\"",
+      "step_expected": "Sign-up form is displayed"
+    },
+    {
+      "step_text": "Enter first name, last name, and a valid phone number (leave email blank) then tap \"Next\"",
+      "step_expected": "SMS verification code screen is displayed"
+    },
+    {
+      "step_text": "Enter the valid verification code received via SMS and tap \"Next\"",
+      "step_expected": "If first install, OS push-notification permission prompt appears"
+    },
+    {
+      "step_text": "Tap \"Allow\" on the push-notification prompt",
+      "step_expected": "User proceeds to the profile photo screen"
+    },
+    {
+      "step_text": "Add a profile photo on the \"Add your profile photo\" screen",
+      "step_expected": "\"Next\" button becomes enabled"
+    },
+    {
+      "step_text": "Tap \"Next\" to continue",
+      "step_expected": "Date-of-birth entry screen appears"
+    },
+    {
+      "step_text": "Enter a valid birthdate (18+ years old) and tap \"Next\"",
+      "step_expected": "Location entry screen appears"
+    },
+    {
+      "step_text": "Enter a valid home location and tap \"Next\"",
+      "step_expected": "Entry-level positions selection screen appears"
+    },
+    {
+      "step_text": "Without selecting any positions, tap \"Next\"",
+      "step_expected": "Advanced positions selection screen appears"
+    },
+    {
+      "step_text": "Without selecting any advanced positions, tap \"Next\"",
+      "step_expected": "Resume import screen appears"
+    },
+    {
+      "step_text": "Tap \"Don't have a resume?\" link",
+      "step_expected": "\"Review and save profile\" screen appears with pre-filled name & location only"
+    },
+    {
+      "step_text": "Scroll to the bottom and tap \"Save profile\"",
+      "step_expected": "Contractor Service Agreement screen appears"
+    },
+    {
+      "step_text": "Scroll to the bottom of the agreement and tap \"I agree and accept\"",
+      "step_expected": "Congrats screen appears with \"Book your first shift\" CTA and green toast"
+    },
+    {
+      "step_text": "Tap \"Book your first shift\" CTA",
+      "step_expected": "Open Shifts screen appears; account status is active and six entry-level positions are auto-approved"
+    }
+  ]
+}

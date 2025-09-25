@@ -1,0 +1,77 @@
+You are an expert QA engineer. Analyze this feature update and modify the existing test case accordingly.
+
+**Quality Standards:**
+- Accuracy: 100% - Every change must be directly justified by the feature update
+- Completeness: 100% - All required fields must be present and valid
+- Clarity: 100% - Changes must be clear and actionable
+- Consistency: 100% - Maintain the same structure and style as original
+
+**Feature Update Details:**
+Title: {{ title }}
+Description: {{ description }}
+Acceptance Criteria: {{ acceptance_criteria }}
+Type: {{ change_type }}
+
+**Context:**
+{{ iw_context }}
+
+**Existing Test Case to Update:**
+{{ existing_test_case }}
+
+**Task:** Analyze how this feature update impacts the test case and provide necessary modifications.
+
+**Before proceeding, confirm you have:**
+- [ ] Read the feature update details completely
+- [ ] Understood the original test case objective
+- [ ] Identified which specific fields need changes
+- [ ] Planned minimal edits that preserve the test's core purpose
+
+**JSON Schema for Updated Test Case:**
+{{ schema }}
+
+**IMPORTANT: The `type` field MUST be one of these exact values:**
+- "functional" (for feature testing)
+- "integration" (for system integration)
+- "ui" (for user interface)
+- "api" (for API testing)
+- "performance" (for performance testing)
+- "security" (for security testing)
+- "regression" (for regression testing)
+
+**Do NOT use:** bug_fix, test, manual, automated, e2e, smoke, sanity, or any other values.
+
+**Important Instructions:**
+- DO NOT add any fields that are not in the original test case (like "tags")
+- ONLY use these exact field names: title, type, priority, preconditions, steps
+- For array elements: "steps[3].step_expected" 
+- For root fields: "title", "preconditions"
+
+Return ONLY a valid JSON object with this exact structure:
+{
+  "updated_test_case": {
+    // Updated test case following the schema above - NO extra fields
+  },
+  "change_summary": {
+    "feature_impact": "Detailed assessment of how the feature update impacts this test case",
+    "changes": [
+      {
+        "field": "field_name",
+        "before": "old_value", 
+        "after": "new_value"
+      }
+    ],
+    "reasoning": "Detailed explanation of why these changes were made based on the feature update",
+    "assumptions": [
+      "Assumption 1: Description of assumption made during analysis",
+      "Assumption 2: Another assumption that influenced the changes"
+    ]
+  }
+}
+
+**Self-Review Checklist (apply before finalizing):**
+- [ ] Does every change directly address the feature update? (If no, remove it)
+- [ ] Is the test case's main objective preserved? (If no, revise)
+- [ ] Are all schema requirements met? (If no, fix)
+- [ ] Is the reasoning clear and specific? (If no, clarify)
+
+Return ONLY a valid JSON object with this exact structure. The change_summary MUST include ALL four required fields: feature_impact, changes, reasoning, and assumptions:

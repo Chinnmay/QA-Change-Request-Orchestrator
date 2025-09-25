@@ -1,0 +1,20 @@
+{
+  "title": "Attempt to join waitlist for a shift that is not full",
+  "type": "functional",
+  "priority": "P2 - High",
+  "preconditions": "The `enable_shift_waitlist` remote config is enabled. The user is logged into the Pro app. There is at least one shift available in the Open Shifts feed that is *not* marked as 'Full'.",
+  "steps": [
+    {
+      "step_text": "Navigate to the Open Shifts feed.",
+      "step_expected": "The Open Shifts feed is displayed, showing available shifts."
+    },
+    {
+      "step_text": "Locate and tap on a shift that is NOT marked as 'Full'.",
+      "step_expected": "The Gig Details screen for the selected shift is displayed. The button to book the shift should be visible, NOT the 'Join waitlist' button."
+    },
+    {
+      "step_text": "Observe the available action buttons on the Gig Details screen.",
+      "step_expected": "The 'Join waitlist' button is NOT displayed. Instead, the 'Book shift' button or equivalent booking action is visible."
+    }
+  ]
+}

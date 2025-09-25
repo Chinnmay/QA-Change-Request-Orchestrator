@@ -1,0 +1,74 @@
+# AI-First QA Change Request Orchestrator Configuration
+
+# LLM Provider Settings
+default_provider: "gemini"  # Options: mock, openai, gemini, anthropic
+
+# LLM Providers
+providers:
+  mock:
+    type: "mock"
+    
+  openai:
+    type: "openai"
+    model: "gpt-3.5-turbo"
+    max_tokens: 1000
+    temperature: 0.7
+    api_key_env: "OPENAI_API_KEY"
+    
+  gemini:
+    type: "gemini"
+    model: "gemini-2.5-flash-lite"
+    max_tokens: 1000
+    temperature: 0.7
+    api_key_env: "GEMINI_API_KEY"
+    safety_settings:
+      harassment: "BLOCK_MEDIUM_AND_ABOVE"
+      hate_speech: "BLOCK_MEDIUM_AND_ABOVE"
+      sexually_explicit: "BLOCK_MEDIUM_AND_ABOVE"
+      dangerous_content: "BLOCK_MEDIUM_AND_ABOVE"
+    
+  anthropic:
+    type: "anthropic"
+    model: "claude-3-sonnet-20240229"
+    max_tokens: 1000
+    temperature: 0.7
+    api_key_env: "ANTHROPIC_API_KEY"
+
+# System Settings
+system:
+  # Paths
+  test_cases_dir: "test_cases"
+  schema_path: "schema/test_case.schema.json"
+  reports_dir: "reports"
+  cache_dir: ".cache"
+  sample_change_requests_dir: "sample_change_requests"
+  
+  # Retrieval
+  default_retriever: "hybrid"
+  top_k:
+    new_feature: 3
+    feature_update: 3
+    bug_fix: 3
+  
+  # Database Retriever
+  database:
+    db_file: "test_cases.db"
+    model_name: "all-MiniLM-L6-v2"
+    keyword_weight: 0.4
+    semantic_weight: 0.4
+    priority_weight: 0.2
+    max_candidates: 200
+    min_similarity_threshold: 0.15  # Lower threshold for better retrieval
+  
+  # Reports
+  reports:
+    filename_template: "{change_type}_{change_request_stem}_{timestamp}_report.md"
+    include_scores: true
+    max_related_display: 10
+
+# Global Settings
+global:
+  timeout: 30
+  retry_attempts: 3
+  retry_delay: 1.0
+  log_level: "INFO"

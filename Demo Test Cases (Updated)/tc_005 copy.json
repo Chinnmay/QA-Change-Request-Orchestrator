@@ -1,0 +1,44 @@
+{
+  "title": "Automatic approval of entry-level positions after onboarding",
+  "type": "regression",
+  "priority": "P3 - Medium",
+  "preconditions": "Pro account just completed onboarding successfully without selecting any positions.",
+  "steps": [
+    {
+      "step_text": "Complete the onboarding flow as per tc_001 (no positions selected, no resume).",
+      "step_expected": "Pro lands on the Open Shifts screen after account creation confirmation."
+    },
+    {
+      "step_text": "Navigate to the Profile \u203a Positions tab.",
+      "step_expected": "Six entry-level positions (General Labor, Warehouse Associate - Entry Level, Event Setup and Takedown, Custodial, Counter Staff / Cashier, Concession / Stand Worker) are displayed with status \"Approved\"."
+    },
+    {
+      "step_text": "Verify backend data via Django admin or GraphQL endpoint for the user profile positions list.",
+      "step_expected": "The six entry-level positions exist on the user profile with status=approved and approval_source=\"auto\"."
+    },
+    {
+      "step_text": "Search the Open Shifts feed for a shift that requires one of the entry-level positions (e.g., General Labor).",
+      "step_expected": "Shift cards requiring the position are visible and can be tapped."
+    },
+    {
+      "step_text": "Tap a shift requiring an entry-level position and observe the \"Book shift\" button.",
+      "step_expected": "\"Book shift\" CTA is enabled without requiring additional position approval."
+    },
+    {
+      "step_text": "Navigate to Settings > Notifications and toggle 'Allow Push Notifications' OFF.",
+      "step_expected": "Push notifications are disabled."
+    },
+    {
+      "step_text": "Kill and relaunch the app.",
+      "step_expected": "App relaunches successfully."
+    },
+    {
+      "step_text": "Navigate to Settings > Notifications and toggle 'Allow Push Notifications' ON.",
+      "step_expected": "A 'register_push_token' API call is observed via network monitoring (e.g., Charles/Proxyman) within 5 seconds, and a success toast \"Notifications re-enabled\" is displayed."
+    },
+    {
+      "step_text": "Verify backend data via Django admin for the user profile.",
+      "step_expected": "A push token is present for the user profile."
+    }
+  ]
+}
